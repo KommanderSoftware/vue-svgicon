@@ -1,5 +1,5 @@
 <template>
-    <svg version="1.1" :class="clazz" :viewBox="box" v-html="path" :style="style"></svg>
+    <svg version="1.1" :viewBox="box" v-html="path"></svg>
 </template>
 
 <script>
@@ -28,20 +28,6 @@
     },
 
     computed: {
-      clazz() {
-        let clazz = 'svg-icon'
-
-        if (this.fill) {
-          clazz += ' svg-fill'
-        }
-
-        if (this.dir) {
-          clazz += ' svg-' + this.dir
-        }
-
-        return clazz
-      },
-
       iconData() {
         if (this.icon) {
           return icons[this.icon]
@@ -97,17 +83,6 @@
         }
 
         return `0 0 ${parseFloat(width)} ${parseFloat(height)}`
-      },
-
-      style() {
-        let digitReg = /^\d+$/
-        let width = digitReg.test(this.width) ? this.width + 'px' : this.width
-        let height = digitReg.test(this.height) ? this.height + 'px' : this.height
-
-        return {
-          width: width,
-          height: height
-        }
       }
     },
 
@@ -128,38 +103,3 @@
   }
 
 </script>
-
-<style scoped>
-    .svg-icon {
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        color: inherit;
-        vertical-align: middle;
-        fill: none;
-        stroke: currentColor;
-    }
-
-    .svg-fill {
-        fill: currentColor;
-        stroke: none;
-    }
-
-    .svg-up {
-        transform: rotate(-90deg);
-    }
-
-    .svg-right {
-         /*default*/
-         transform: rotate(0deg);
-    }
-
-    .svg-down {
-        transform: rotate(90deg);
-    }
-
-    .svg-left {
-        transform: rotate(180deg);
-    }
-
-</style>
