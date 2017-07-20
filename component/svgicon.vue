@@ -1,5 +1,5 @@
 <template>
-    <svg version="1.1" :viewBox="box" v-html="path"></svg>
+    <svg version="1.1" :viewBox="box" v-html="path" @click="onClick"></svg>
 </template>
 
 <script>
@@ -85,6 +85,12 @@
         return `0 0 ${parseFloat(width)} ${parseFloat(height)}`
       }
     },
+    
+    methods: {
+      onClick: function () {
+        this.$emit.('click')
+      }
+    }
 
     install(Vue, options = {}) {
       let tagName = options.tagName || 'svgicon'
